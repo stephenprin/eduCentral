@@ -1,10 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 dotenv.config();
 const app= express();
 app.use(express.json());
+
+app.use(cors());
 
 
 import user from './routes/user';

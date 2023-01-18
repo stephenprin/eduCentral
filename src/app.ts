@@ -1,18 +1,15 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import logger from 'morgan';
 
 dotenv.config();
 const app= express();
 app.use(express.json());
 
 
+import user from './routes/user';
 
-
-
-app.use('/api/v1/tours', tourRoute);
-app.use('/api/v1/users', userRoute);
+app.use('/api/v1/users', user);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   console.log(req.headers)
@@ -33,7 +30,7 @@ app.all('*', (req: Request, res: Response) => {
 
 
  
-//connecting too database and server
+
 const PORT = process.env.PORT || 3500;
 
 mongoose.set('strictQuery', true);
